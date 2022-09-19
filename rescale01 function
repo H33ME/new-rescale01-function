@@ -1,0 +1,38 @@
+
+# first rescale function --------------------------------------------------
+# this function rescales a vector to lie between 0 and 1. 
+
+rescale01<- function(x){
+  rng<- range(x, na.rm= TRUE, finite= TRUE)# fix by adding finite argument
+  (x-rng[1])/(rng[2]-rng[1])
+}
+rescale01(x)
+
+# new rescale01 function --------------------------------------------------
+# the second variant of rescale01(), infinite values are left unchanged.
+#Rewrite rescale01() so that -Inf is mapped to 0, and Inf is mapped to 1. 
+# rescale01 function so that for -Inf it gives 0 and Inf it gives 1
+
+rescale01 <- function(x){
+  rng <- range(x,na.rm= TRUE, finite= TRUE)
+  rng01 <- (x-rng[1])/(rng[2]-rng[1])
+    for(i in 1:length(rng01)){
+      if(rng01[i]==Inf){
+      rng01[i] <- 1
+    }else if(rng01[i]==-Inf){
+      rng01[i] <- 0
+    } 
+  }
+  rng01
+}
+
+# example used to check the functionality of the rescale01 function -------
+
+
+x<- c(-Inf,1:10,Inf)
+
+# call the rescale01 function ---------------------------------------------
+
+
+rescale01(x)
+
